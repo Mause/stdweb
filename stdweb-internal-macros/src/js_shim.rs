@@ -86,7 +86,10 @@ pub fn js_shim_extern_code( target: Target, code: &str, arg_count: usize, return
 
                     unsafe {
                         let victor: &Vec<*const u8> = &vec![#(#shim_args_passthrough),*];
-                        emscripten_asm_const_int( SNIPPET as *const _ as *const u8, &"\x00" as *const _ as *const u8, victor as *const _ as *const u8) #return_semicolon
+
+                        let signature = "i".repeat((*victor).len()) + &"\x00";
+
+                        emscripten_asm_const_int( SNIPPET as *const _ as *const u8, &signature as *const _ as *const u8, victor as *const _ as *const u8) #return_semicolon
                     }
                     }
                 }
