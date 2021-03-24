@@ -81,7 +81,7 @@ pub fn js_shim_extern_code( target: Target, code: &str, arg_count: usize, return
 
                 fn #shim_name( #(#shim_args),* ) #return_signature {
                     extern "C" {
-                        pub fn emscripten_asm_const_int( code: *const u8, ... ) -> i32;
+                            pub fn emscripten_asm_const_int(code: *const u8, sigPtr: *const u8, argBuf: *const u8) -> i32;
                     }
 
                     unsafe {
