@@ -18,6 +18,10 @@ pub unsafe fn dealloc( ptr: *mut u8, _: usize ) {
 
 pub mod exports {
     extern "C" {
-        pub fn emscripten_asm_const_int( code: *const u8, ... ) -> i32;
+        pub fn emscripten_asm_const_int(
+            code: *const u8,
+            sigPtr: *const u8,
+            argBuf: *const u8,
+        ) -> i32;
     }
 }
