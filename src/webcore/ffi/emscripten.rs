@@ -18,6 +18,7 @@ pub unsafe fn dealloc( ptr: *mut u8, _: usize ) {
 
 pub mod exports {
     extern "C" {
+        /// called out to js
         pub fn emscripten_asm_const_int(
             code: *const u8,
             sigPtr: *const u8,
