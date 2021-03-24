@@ -85,8 +85,8 @@ pub fn js_shim_extern_code( target: Target, code: &str, arg_count: usize, return
                     }
 
                     unsafe {
-                        let victor = &[#(#shim_args_passthrough),*];
-                        emscripten_asm_const_int( SNIPPET as *const _ as *const u8, &"", victor ) #return_semicolon
+                        let victor = &[#(#shim_args_passthrough),*] as *const _ as *const u8;
+                        emscripten_asm_const_int( SNIPPET as *const _ as *const u8, &"\x00" as *const _ as *const u8, victor ) #return_semicolon
                     }
                 }
             }
